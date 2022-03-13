@@ -5,10 +5,13 @@ import com.javadeveloper.training.springboot.entities.staff.Staff;
 import com.javadeveloper.training.springboot.services.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/staff")
+@RestController
+@RequestMapping("staff/")
 public class StaffController {
 
     private final StaffService staffService;
@@ -19,7 +22,12 @@ public class StaffController {
     }
 
     @GetMapping(path = "/getAllInformation",produces = MediaType.APPLICATION_JSON_VALUE)
-    public Staff getAllInformation(){
-        return staffService.getAllInformation();
+    public ResponseEntity<Staff> getAllInformation(){
+        return ResponseEntity.ok(new Staff());
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Staff> whatever(){
+        return ResponseEntity.ok(new Staff());
     }
 }
